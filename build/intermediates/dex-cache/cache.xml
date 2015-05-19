@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/nilslindgren/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-android/2.2.3/682d0a8dce58e47bde57316aac7d6bb5618dee6b/firebase-client-android-2.2.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="682d0a8dce58e47bde57316aac7d6bb5618dee6b">
+        <dex dex="/Users/nilslindgren/Projektarebete_Grupp2/androidApp/ScreenAndroid/build/intermediates/pre-dexed/debug/firebase-client-android-2.2.3-85dd5c68a16970bfd63e1d35f39b9363b1b88f12.jar" />
+    </item>
+    <item
+        jar="/Users/nilslindgren/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-jvm/2.2.3/e787a02a644f2681e4af82cdc88dd2f69877692b/firebase-client-jvm-2.2.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e787a02a644f2681e4af82cdc88dd2f69877692b">
+        <dex dex="/Users/nilslindgren/Projektarebete_Grupp2/androidApp/ScreenAndroid/build/intermediates/pre-dexed/debug/firebase-client-jvm-2.2.3-76e8c898f668b5e365d35c2c3940a35043066c3e.jar" />
+    </item>
+    <item
+        jar="/Users/nilslindgren/Projektarebete_Grupp2/androidApp/ScreenAndroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="/Users/nilslindgren/Projektarebete_Grupp2/androidApp/ScreenAndroid/build/intermediates/pre-dexed/debug/classes-17f6f07c73ce40a54f0c42bb61d38c8427e78a31.jar" />
+    </item>
+    <item
+        jar="/Users/nilslindgren/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="/Users/nilslindgren/Projektarebete_Grupp2/androidApp/ScreenAndroid/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-e2b61ab48d3b36c81848d963692ec786889e6a33.jar" />
+    </item>
+    <item
+        jar="/Users/nilslindgren/.gradle/caches/modules-2/files-2.1/com.firebase/tubesock/0.0.11/d37cb67277928cf59344b4196af8d9cee1f1a27c/tubesock-0.0.11.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d37cb67277928cf59344b4196af8d9cee1f1a27c">
+        <dex dex="/Users/nilslindgren/Projektarebete_Grupp2/androidApp/ScreenAndroid/build/intermediates/pre-dexed/debug/tubesock-0.0.11-9a42f5824b6160c1668235ab8d0a581dede6d6b3.jar" />
+    </item>
+    <item
+        jar="/Users/nilslindgren/Projektarebete_Grupp2/androidApp/ScreenAndroid/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/Users/nilslindgren/Projektarebete_Grupp2/androidApp/ScreenAndroid/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-76b484611f4f45a828115c3314228c05512bd18d.jar" />
+    </item>
+    <item
+        jar="/Users/nilslindgren/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.2.2/d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b/jackson-core-2.2.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
+        <dex dex="/Users/nilslindgren/Projektarebete_Grupp2/androidApp/ScreenAndroid/build/intermediates/pre-dexed/debug/jackson-core-2.2.2-29e2a8a9da24b33a71bcd0fa6faf8501976965bb.jar" />
+    </item>
+    <item
+        jar="/Users/nilslindgren/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.2.2/285cb9c666f0f0f3dd8a1be04e1f457eb7b15113/jackson-annotations-2.2.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
+        <dex dex="/Users/nilslindgren/Projektarebete_Grupp2/androidApp/ScreenAndroid/build/intermediates/pre-dexed/debug/jackson-annotations-2.2.2-1dd171322bb8182e29bfc13b0347e43661dfd86c.jar" />
+    </item>
+    <item
+        jar="/Users/nilslindgren/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.2.2/3c8f6018eaa72d43b261181e801e6f8676c16ef6/jackson-databind-2.2.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
+        <dex dex="/Users/nilslindgren/Projektarebete_Grupp2/androidApp/ScreenAndroid/build/intermediates/pre-dexed/debug/jackson-databind-2.2.2-ed8a30bf636319bd4ee0189753e6b3ab126b977c.jar" />
+    </item>
+    <item
+        jar="/Users/nilslindgren/Projektarebete_Grupp2/androidApp/ScreenAndroid/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/Users/nilslindgren/Projektarebete_Grupp2/androidApp/ScreenAndroid/build/intermediates/pre-dexed/debug/classes-1a65947bf7a3080f5ceb1a4627f8eace98fd8479.jar" />
+    </item>
+
+</items>
