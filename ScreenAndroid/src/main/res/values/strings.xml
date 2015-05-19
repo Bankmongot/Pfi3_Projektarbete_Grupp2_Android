@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">ScreenAndroid</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="qTitle">Write a question:</string>
+    <string name="Alt1">Alternative 1</string>
+    <string name="Alt2">Alternative 2</string>
+    <string name="Alt3">Alternative 3</string>
+    <string name="Alt4">Alternative 4</string>
+    <string name="qButtonText">SEND</string>
+
+    <string name="aTitle">This is a question?</string>
+</resources>

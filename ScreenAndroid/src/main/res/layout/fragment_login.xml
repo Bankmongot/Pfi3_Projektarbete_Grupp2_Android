@@ -1,0 +1,162 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="se.mah.k3.klarappo.LoginFragment"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/screenNumber"
+        android:layout_gravity="center"
+        android:text="145"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_marginStart="31dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logon"
+        android:id="@+id/btnLogon"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_below="@+id/screenNumber"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="54dp"
+        android:layout_marginEnd="54dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/name"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_below="@+id/screenNumber"
+        android:layout_alignStart="@+id/screenNumber"
+        android:text="Username" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ScreenNumber"
+        android:id="@+id/textView2"
+        android:layout_alignBottom="@+id/screenNumber"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="left"
+        android:layout_marginLeft="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LoginName"
+        android:id="@+id/textView3"
+        android:layout_alignBottom="@+id/name"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Question"
+        android:id="@+id/textView4"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/question"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignStart="@+id/name"
+        android:text="Favorite day?" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextAlt1"
+        android:layout_below="@+id/question"
+        android:layout_alignLeft="@+id/question"
+        android:layout_alignStart="@+id/question"
+        android:layout_alignRight="@+id/question"
+        android:layout_alignEnd="@+id/question"
+        android:text="Saturday" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextAlt2"
+        android:layout_below="@+id/editTextAlt1"
+        android:layout_alignLeft="@+id/editTextAlt1"
+        android:layout_alignStart="@+id/editTextAlt1"
+        android:layout_alignRight="@+id/editTextAlt1"
+        android:layout_alignEnd="@+id/editTextAlt1"
+        android:text="Friday" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextAlt3"
+        android:layout_below="@+id/editTextAlt2"
+        android:layout_alignLeft="@+id/editTextAlt2"
+        android:layout_alignStart="@+id/editTextAlt2"
+        android:layout_alignRight="@+id/editTextAlt2"
+        android:layout_alignEnd="@+id/editTextAlt2"
+        android:text="Wensday" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextAlt4"
+        android:layout_below="@+id/editTextAlt3"
+        android:layout_alignLeft="@+id/editTextAlt3"
+        android:layout_alignStart="@+id/editTextAlt3"
+        android:layout_alignRight="@+id/editTextAlt3"
+        android:layout_alignEnd="@+id/editTextAlt3"
+        android:text="Monday" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#1"
+        android:id="@+id/textView5"
+        android:layout_above="@+id/editTextAlt2"
+        android:layout_toLeftOf="@+id/editTextAlt1"
+        android:layout_toStartOf="@+id/editTextAlt1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#1"
+        android:id="@+id/textView6"
+        android:layout_alignBottom="@+id/editTextAlt2"
+        android:layout_toLeftOf="@+id/editTextAlt2"
+        android:layout_toStartOf="@+id/editTextAlt2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#1"
+        android:id="@+id/textView7"
+        android:layout_above="@+id/editTextAlt4"
+        android:layout_toLeftOf="@+id/editTextAlt3"
+        android:layout_toStartOf="@+id/editTextAlt3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#1"
+        android:id="@+id/textView8"
+        android:layout_alignBottom="@+id/editTextAlt4"
+        android:layout_toLeftOf="@+id/editTextAlt4"
+        android:layout_toStartOf="@+id/editTextAlt4" />
+
+</RelativeLayout>
