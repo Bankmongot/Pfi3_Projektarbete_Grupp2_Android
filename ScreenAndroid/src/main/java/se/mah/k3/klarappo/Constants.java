@@ -2,12 +2,10 @@ package se.mah.k3.klarappo;
 
 import com.firebase.client.Firebase;
 
-/**
- * Created by K3LARA on 29/03/2015.
- */
+
 public class Constants {
     public static Firebase myFirebaseRef;
-    public static String userName = "";
+    public static String userName = "Username";
     public static String question = "";
     public static String alt1 = "";
     public static String alt2 = "";

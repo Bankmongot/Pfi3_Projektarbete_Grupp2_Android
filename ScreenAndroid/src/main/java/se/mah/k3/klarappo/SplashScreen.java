@@ -44,7 +44,26 @@ public class SplashScreen extends Fragment {
             public void onDataChange(DataSnapshot snapshot) {
                 //timeToRun = snapshot.getValue();
                 System.out.println(snapshot.getValue());
+
                 timeToRun = (boolean) snapshot.getValue();
+
+
+                if(timeToRun == false){
+                    Log.d("SplashScreen", "false, expanding LoginFragment!!");
+                    FragmentManager fm;
+                    fm = getFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.container, new LoginFragment());
+                    ft.commit();
+                } else if ( timeToRun == true){
+                    Log.d("SplashScreen", "true, expanding Mainfragent!!");
+                    FragmentManager fm;
+                    fm = getFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.container, new MainFragment());
+                    ft.commit();
+                }
+
             }
 
             @Override
@@ -62,29 +81,10 @@ public class SplashScreen extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         checkRun();
-
-        if(timeToRun == false){
-            Log.d("SplashScreen", "false, expanding LoginFragment!!");
-
-
-            FragmentManager fm;
-            fm = getFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.container, new LoginFragment());
-            ft.commit();
-        } else if ( timeToRun == true){
-            FragmentManager fm;
-            fm = getFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.container, new MainFragment());
-            ft.commit();
-        }
-
-
-
-
         return inflater.inflate(R.layout.fragment_splash_screen, container, false);
+
     }
 
 

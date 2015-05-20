@@ -1,6 +1,8 @@
 package se.mah.k3.klarappo;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +21,9 @@ import com.firebase.client.MutableData;
 import com.firebase.client.Transaction;
 import com.firebase.client.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class MainFragment extends Fragment implements View.OnClickListener, View.OnTouchListener, ValueEventListener{
     long lastTimeStamp = System.currentTimeMillis();
@@ -26,6 +31,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
     int width;
     int height;
     private long roundTrip = 0;
+    private Firebase myFirebaseRef;
+
 
     public MainFragment() {
     }
@@ -54,14 +61,44 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         v.setOnClickListener(this);
 
         //Create listeners for response time back so know when the token returns
+        getUsername();
 
 
-
-        Firebase fireBaseEntryForMyID = Constants.myFirebaseRef.child(Constants.userName); //My part of the firebase
-        Firebase fireBaseEntryForRoundBack =  fireBaseEntryForMyID.child("RoundTripBack"); //My roundtrip (Check firebase)
+       // Firebase fireBaseEntryForMyID = Constants.myFirebaseRef.child(Constants.userName); //My part of the firebase
+       // Firebase fireBaseEntryForRoundBack =  fireBaseEntryForMyID.child("RoundTripBack"); //My roundtrip (Check firebase)
         //Listen for changes on "RoundTripBack" entry onDataChange will be called when "RoundTripBack" is changed
-        fireBaseEntryForRoundBack.addValueEventListener(this);
+        //fireBaseEntryForRoundBack.addValueEventListener(this);
         return rootView;
+    }
+
+    public void getUsername() {
+        myFirebaseRef = new Firebase("https://popping-torch-1741.firebaseio.com/Username");
+
+
+
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                Map<String, Object> newPost = (Map<String, Object>) snapshot.getValue();
+                Iterable<DataSnapshot> fourChildren = snapshot.getChildren();
+                for (DataSnapshot dataSnapshot2 : fourChildren) {
+                    if (dataSnapshot2.getKey().equals("key")) {
+                        Constants.userName = (String) snapshot.getValue();
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+
+        });
+
     }
 
 

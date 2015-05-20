@@ -9,13 +9,6 @@
         <dex dex="/Users/nilslindgren/Desktop/Slutprojekt/Android/Pfi3_Projektarbete_Grupp2_Android/ScreenAndroid/build/intermediates/pre-dexed/debug/firebase-client-android-2.2.3-85dd5c68a16970bfd63e1d35f39b9363b1b88f12.jar" />
     </item>
     <item
-        jar="/Users/nilslindgren/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.2.2/285cb9c666f0f0f3dd8a1be04e1f457eb7b15113/jackson-annotations-2.2.2.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
-        <dex dex="/Users/nilslindgren/Desktop/Slutprojekt/Android/Pfi3_Projektarbete_Grupp2_Android/ScreenAndroid/build/intermediates/pre-dexed/debug/jackson-annotations-2.2.2-1dd171322bb8182e29bfc13b0347e43661dfd86c.jar" />
-    </item>
-    <item
         jar="/Users/nilslindgren/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-jvm/2.2.3/e787a02a644f2681e4af82cdc88dd2f69877692b/firebase-client-jvm-2.2.3.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -37,6 +30,27 @@
         <dex dex="/Users/nilslindgren/Desktop/Slutprojekt/Android/Pfi3_Projektarbete_Grupp2_Android/ScreenAndroid/build/intermediates/pre-dexed/debug/classes-e4eb57bc319b4b682d3b1219d57a02f221b3e8b0.jar" />
     </item>
     <item
+        jar="/Users/nilslindgren/.gradle/caches/modules-2/files-2.1/com.firebase/tubesock/0.0.11/d37cb67277928cf59344b4196af8d9cee1f1a27c/tubesock-0.0.11.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d37cb67277928cf59344b4196af8d9cee1f1a27c">
+        <dex dex="/Users/nilslindgren/Desktop/Slutprojekt/Android/Pfi3_Projektarbete_Grupp2_Android/ScreenAndroid/build/intermediates/pre-dexed/debug/tubesock-0.0.11-9a42f5824b6160c1668235ab8d0a581dede6d6b3.jar" />
+    </item>
+    <item
+        jar="/Users/nilslindgren/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.2.2/d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b/jackson-core-2.2.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
+        <dex dex="/Users/nilslindgren/Desktop/Slutprojekt/Android/Pfi3_Projektarbete_Grupp2_Android/ScreenAndroid/build/intermediates/pre-dexed/debug/jackson-core-2.2.2-29e2a8a9da24b33a71bcd0fa6faf8501976965bb.jar" />
+    </item>
+    <item
+        jar="/Users/nilslindgren/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.2.2/285cb9c666f0f0f3dd8a1be04e1f457eb7b15113/jackson-annotations-2.2.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
+        <dex dex="/Users/nilslindgren/Desktop/Slutprojekt/Android/Pfi3_Projektarbete_Grupp2_Android/ScreenAndroid/build/intermediates/pre-dexed/debug/jackson-annotations-2.2.2-1dd171322bb8182e29bfc13b0347e43661dfd86c.jar" />
+    </item>
+    <item
         jar="/Users/nilslindgren/Desktop/Slutprojekt/Android/Pfi3_Projektarbete_Grupp2_Android/ScreenAndroid/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -51,25 +65,11 @@
         <dex dex="/Users/nilslindgren/Desktop/Slutprojekt/Android/Pfi3_Projektarbete_Grupp2_Android/ScreenAndroid/build/intermediates/pre-dexed/debug/jackson-databind-2.2.2-ed8a30bf636319bd4ee0189753e6b3ab126b977c.jar" />
     </item>
     <item
-        jar="/Users/nilslindgren/.gradle/caches/modules-2/files-2.1/com.firebase/tubesock/0.0.11/d37cb67277928cf59344b4196af8d9cee1f1a27c/tubesock-0.0.11.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d37cb67277928cf59344b4196af8d9cee1f1a27c">
-        <dex dex="/Users/nilslindgren/Desktop/Slutprojekt/Android/Pfi3_Projektarbete_Grupp2_Android/ScreenAndroid/build/intermediates/pre-dexed/debug/tubesock-0.0.11-9a42f5824b6160c1668235ab8d0a581dede6d6b3.jar" />
-    </item>
-    <item
         jar="/Users/nilslindgren/Desktop/Slutprojekt/Android/Pfi3_Projektarbete_Grupp2_Android/ScreenAndroid/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="d84409890828e07d344a3b9b1da545dba9897b51">
         <dex dex="/Users/nilslindgren/Desktop/Slutprojekt/Android/Pfi3_Projektarbete_Grupp2_Android/ScreenAndroid/build/intermediates/pre-dexed/debug/classes-5c99b004c965cb55f30a1ee93715a89a3688473f.jar" />
-    </item>
-    <item
-        jar="/Users/nilslindgren/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.2.2/d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b/jackson-core-2.2.2.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
-        <dex dex="/Users/nilslindgren/Desktop/Slutprojekt/Android/Pfi3_Projektarbete_Grupp2_Android/ScreenAndroid/build/intermediates/pre-dexed/debug/jackson-core-2.2.2-29e2a8a9da24b33a71bcd0fa6faf8501976965bb.jar" />
     </item>
 
 </items>
