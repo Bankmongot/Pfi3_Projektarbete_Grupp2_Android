@@ -15,4 +15,9 @@
     <string name="qButtonText">SEND</string>
 
     <string name="aTitle">This is a question?</string>
+
+    <string-array name="Themes">
+        <item>Circles</item>
+        <item>Dummy</item>
+    </string-array>
 </resources>

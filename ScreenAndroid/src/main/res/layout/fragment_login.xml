@@ -159,4 +159,13 @@
         android:layout_toLeftOf="@+id/editTextAlt4"
         android:layout_toStartOf="@+id/editTextAlt4" />
 
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:entries="@array/Themes"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/btnLogon"
+        android:layout_alignStart="@+id/btnLogon" />
+
 </RelativeLayout>

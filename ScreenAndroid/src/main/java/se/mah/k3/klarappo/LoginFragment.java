@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
@@ -116,7 +117,13 @@ public class LoginFragment extends Fragment implements ValueEventListener {
         Constants.checkmyFirebaseRef().child(Constants.userName).child("Vote3").setValue(0);
         Constants.checkmyFirebaseRef().child(Constants.userName).child("Vote4").setValue(0);
 
-        Constants.checkmyFirebaseRef().child(Constants.userName).child("Theme").setValue("asdf");
+    }
+
+    public void sendTheme(){
+        Spinner spinner = (Spinner) getActivity().findViewById(R.id.spinner);
+        String theme = spinner.getSelectedItem().toString();
+
+        Constants.checkmyFirebaseRef().child(Constants.userName).child("Theme").setValue(theme);
     }
 
 
@@ -163,8 +170,9 @@ public class LoginFragment extends Fragment implements ValueEventListener {
 
 
                 sendQuestion();
-                //sendAlts();
-                shittyFunction();
+                sendAlts();
+                sendTheme();
+                //shittyFunction();
 
                 FragmentManager fm;
                 fm = getFragmentManager();
