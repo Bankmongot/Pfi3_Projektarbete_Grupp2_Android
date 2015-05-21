@@ -12,6 +12,8 @@ public class Constants {
     public static String alt3 = "";
     public static String alt4 = "";
 
+    public static boolean alreadyRunning = false;
+
     public static int xPos = 101;
     public static int yPos = 100;
     public static String URL = "https://popping-torch-1741.firebaseio.com/";

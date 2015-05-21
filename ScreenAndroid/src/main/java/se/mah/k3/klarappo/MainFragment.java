@@ -47,6 +47,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         width = size.x;
         height = size.y;
 
+        Constants.alreadyRunning = true;
 
         //Add listeners for the touch events onTouch will be called when screen is touched.
         rootView.setOnTouchListener(this);
@@ -152,12 +153,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
     public boolean onTouch(View v, MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_MOVE:  // If it is the motionEvent move.
-                float xRel = event.getX()/width;
-                float yRel = event.getRawY()/height;//Compensate for menubar can probably be solved more beautiful test with getY to see the difference
-                Constants.myFirebaseRef.child(Constants.userName).child("xRel").setValue(xRel);  //Set the x Value
-                Constants.myFirebaseRef.child(Constants.userName).child("yRel").setValue(yRel);  //Set the y value
 
-                Constants.myFirebaseRef.child(Constants.userName).child("Question").setValue(Constants.question);
+               // Constants.myFirebaseRef.child(Constants.userName).child("Question").setValue(Constants.question);
 
         }
         return true; //Ok we consumed the event and no-one can use it it is ours!

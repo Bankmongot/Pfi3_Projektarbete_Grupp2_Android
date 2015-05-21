@@ -55,7 +55,7 @@ public class SplashScreen extends Fragment {
                     FragmentTransaction ft = fm.beginTransaction();
                     ft.replace(R.id.container, new LoginFragment());
                     ft.commit();
-                } else if ( timeToRun == true){
+                } else if ( timeToRun == true && Constants.alreadyRunning == false){
                     Log.d("SplashScreen", "true, expanding Mainfragent!!");
                     FragmentManager fm;
                     fm = getFragmentManager();
