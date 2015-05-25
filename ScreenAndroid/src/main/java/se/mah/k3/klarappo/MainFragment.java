@@ -53,13 +53,11 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         rootView.setOnTouchListener(this);
 
         //Add listeners to initiate a measure of roundtrip time onClick will be called.
-        View v = rootView.findViewById(R.id.iv_refresh);
         rootView.findViewById(R.id.buttonAlt1).setOnClickListener(this);
         rootView.findViewById(R.id.buttonAlt2).setOnClickListener(this);
         rootView.findViewById(R.id.buttonAlt3).setOnClickListener(this);
         rootView.findViewById(R.id.buttonAlt4).setOnClickListener(this);
 
-        v.setOnClickListener(this);
 
         //Create listeners for response time back so know when the token returns
         getUsername();
@@ -129,11 +127,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
      //Start a new time measure of roundtrip time
      @Override
     public void onClick(View v) {
-         if (v.getId()==R.id.iv_refresh) {
-             roundTrip = roundTrip + 1; //Assuming that we are the only one using our ID
-             lastTimeStamp = System.currentTimeMillis();  //remember when we sent the token
-             Constants.myFirebaseRef.child(Constants.userName).child("RoundTripTo").setValue(roundTrip);
-         }
+
          if (v.getId()==R.id.buttonAlt1){
              updateVote("Vote1");
          }
@@ -166,8 +160,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         if (roundTrip > 0 && dataSnapshot != null) {
             roundTrip = (long) dataSnapshot.getValue();
             timeLastRound = System.currentTimeMillis() - lastTimeStamp;
-            TextView timeLastTV = (TextView) getActivity().findViewById(R.id.timelast);
-            timeLastTV.setText("" + timeLastRound);
+            //TextView timeLastTV = (TextView) getActivity().findViewById(R.id.timelast);
+           // timeLastTV.setText("" + timeLastRound);
         }
     }
 

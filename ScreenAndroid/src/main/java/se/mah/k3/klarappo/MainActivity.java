@@ -1,7 +1,6 @@
 package se.mah.k3.klarappo;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -18,6 +17,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContext(this);
+
         if (savedInstanceState == null) {
             FragmentManager fm;
             fm = getFragmentManager();
@@ -26,6 +26,7 @@ public class MainActivity extends Activity {
             ft.commit();
         }
     }
+
 
 
     @Override

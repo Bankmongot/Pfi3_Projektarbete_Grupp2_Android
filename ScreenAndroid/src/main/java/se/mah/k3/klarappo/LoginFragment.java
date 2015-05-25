@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
@@ -40,91 +41,34 @@ public class LoginFragment extends Fragment implements ValueEventListener {
     public void sendQuestion(){
         EditText question = (EditText) getActivity().findViewById(R.id.question);
         Constants.question = question.getText().toString();
+        Log.d("LoginFragment", "Ettttt");
+
         Log.d("LoginFragment", Constants.question);
         Constants.checkmyFirebaseRef().child(Constants.userName).child("Question").setValue(Constants.question);
 
         //Log.d("LoginFragment", String.valueOf(Constants.myFirebaseRef));
     }
 
-    public class Answer {
-        private int votes;
-        private String alternative;
-        public Answer() {}
+    public void numberOfAlternatives(){
+        Firebase answerRef = Constants.checkmyFirebaseRef().child(Constants.userName).child("numOfAlternatives");
 
-        public Answer(String alternative, int votes) {
-            this.alternative = alternative;
-            this.votes = votes;
-        }
+        Spinner numOfAlts = (Spinner) getActivity().findViewById(R.id.theNumOfAlts);
+        int theAlts = numOfAlts.getSelectedItemPosition();
 
-        public String getAlternative(){
-            return alternative;
-        }
-
-        public int getVotes(){
-            return votes;
-        }
-    }
-
-
-    public void sendAlts(){
-        //Firebase answerRef = Constants.myFirebaseRef.child(Constants.userName).child("answers");
-
-        Firebase answerRef = Constants.checkmyFirebaseRef().child(Constants.userName);
-
-        Map<String, Answer> ourMap = new HashMap<String, Answer>();
-
-        EditText alt1 = (EditText) getActivity().findViewById(R.id.editTextAlt1);
-        EditText alt2 = (EditText) getActivity().findViewById(R.id.editTextAlt2);
-        EditText alt3 = (EditText) getActivity().findViewById(R.id.editTextAlt3);
-        EditText alt4 = (EditText) getActivity().findViewById(R.id.editTextAlt4);
-
-        Constants.alt1 = alt1.getText().toString();
-        Constants.alt2 = alt2.getText().toString();
-        Constants.alt3 = alt3.getText().toString();
-        Constants.alt4 = alt4.getText().toString();
-
-        Answer one = new Answer(Constants.alt1, 0);
-        Answer two = new Answer(Constants.alt2, 0);
-        Answer three = new Answer(Constants.alt3, 0);
-        Answer four = new Answer(Constants.alt4, 0);
-
-        ourMap.put("one", one);
-        ourMap.put("two", two);
-        ourMap.put("three", three);
-        ourMap.put("four", four);
-
-        answerRef.setValue(ourMap);
-    }
-
-    public void shittyFunction(){
-        EditText alt1 = (EditText) getActivity().findViewById(R.id.editTextAlt1);
-        EditText alt2 = (EditText) getActivity().findViewById(R.id.editTextAlt2);
-        EditText alt3 = (EditText) getActivity().findViewById(R.id.editTextAlt3);
-        EditText alt4 = (EditText) getActivity().findViewById(R.id.editTextAlt4);
-
-        Constants.alt1 = alt1.getText().toString();
-        Constants.alt2 = alt2.getText().toString();
-        Constants.alt3 = alt3.getText().toString();
-        Constants.alt4 = alt4.getText().toString();
-
-        Constants.checkmyFirebaseRef().child(Constants.userName).child("Alt1").setValue(Constants.alt1);
-        Constants.checkmyFirebaseRef().child(Constants.userName).child("Alt2").setValue(Constants.alt2);
-        Constants.checkmyFirebaseRef().child(Constants.userName).child("Alt3").setValue(Constants.alt3);
-        Constants.checkmyFirebaseRef().child(Constants.userName).child("Alt4").setValue(Constants.alt4);
-
-        Constants.checkmyFirebaseRef().child(Constants.userName).child("Vote1").setValue(0);
-        Constants.checkmyFirebaseRef().child(Constants.userName).child("Vote2").setValue(0);
-        Constants.checkmyFirebaseRef().child(Constants.userName).child("Vote3").setValue(0);
-        Constants.checkmyFirebaseRef().child(Constants.userName).child("Vote4").setValue(0);
-
+        answerRef.setValue(theAlts);
     }
 
     public void sendTheme(){
         Spinner spinner = (Spinner) getActivity().findViewById(R.id.spinner);
         String theme = spinner.getSelectedItem().toString();
+        Log.d("LoginFragment", "Tvååååå");
+
 
         Constants.checkmyFirebaseRef().child(Constants.userName).child("Theme").setValue(theme);
     }
+
+
+
 
 
 
@@ -132,6 +76,7 @@ public class LoginFragment extends Fragment implements ValueEventListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View returnView = inflater.inflate(R.layout.fragment_login, container, false);
+        Log.d("LoginFragment", "1");
         View v = returnView.findViewById(R.id.btnLogon);
         v.setOnClickListener(new View.OnClickListener() {
             //Click on loginButton
@@ -145,7 +90,9 @@ public class LoginFragment extends Fragment implements ValueEventListener {
                 //Ok listen the changes will sho up in the method onDataChange
                 fireBaseEntryForScreenNbr.addValueEventListener(LoginFragment.this);
             }
+
         });
+        Log.d("LoginFragment", "2");
         return returnView;
     }
 
@@ -154,32 +101,31 @@ public class LoginFragment extends Fragment implements ValueEventListener {
 
     @Override
     public void onDataChange(DataSnapshot snapshot) {
+        Log.d("LoginFragment", "3");
         if (snapshot.getValue()!=null) {
+            Log.d("LoginFragment", "4");
             long val = (long) snapshot.getValue();
             String screenNbrFromFirebase = String.valueOf(val);
             Log.i("LoginFragment", "Screen nbr entered: " + val + " Value from firebase: "+screenNbrFromFirebase);
             EditText screenNumber = (EditText) getActivity().findViewById(R.id.screenNumber);
-            EditText name = (EditText) getActivity().findViewById(R.id.name);
 
-            Constants.userName = name.getText().toString();
+           // EditText name = (EditText) getActivity().findViewById(R.id.name);
+           // Constants.userName = name.getText().toString();
 
-
+            Log.d("LoginFragment", "5");
             //Are we on the right screen
             if (screenNbrFromFirebase.equals(screenNumber.getText().toString())){
                 Log.i("LoginFragment", "Logged in");
 
-
                 sendQuestion();
-                sendAlts();
                 sendTheme();
-                //shittyFunction();
 
                 FragmentManager fm;
                 fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.container, new MainFragment());
+                ft.replace(R.id.container, new AlternativeInput());
                 ft.commit();
-            }else{
+            }   else {
                 Toast.makeText(getActivity(),"Not the correct Screen",Toast.LENGTH_LONG).show();
             }
         }
@@ -187,6 +133,7 @@ public class LoginFragment extends Fragment implements ValueEventListener {
 
     @Override
     public void onCancelled(FirebaseError firebaseError) {
+        Log.d("LoginFragment", "Error: "+firebaseError);
 
     }
 }

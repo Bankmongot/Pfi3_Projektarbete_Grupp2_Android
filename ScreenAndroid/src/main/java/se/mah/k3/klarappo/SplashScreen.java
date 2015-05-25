@@ -9,9 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -28,10 +26,12 @@ public class SplashScreen extends Fragment {
 
 
 
-
     public SplashScreen() {
         // Required empty public constructor
     }
+
+
+
 
     public void checkRun() {
         myFirebaseRef = new Firebase("https://popping-torch-1741.firebaseio.com/Active");
@@ -81,7 +81,6 @@ public class SplashScreen extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         checkRun();
         return inflater.inflate(R.layout.fragment_splash_screen, container, false);
 

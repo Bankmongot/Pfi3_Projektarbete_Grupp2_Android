@@ -14,20 +14,19 @@
         android:layout_gravity="center"
         android:text="145"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/textView2"
-        android:layout_marginStart="31dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text=""
         android:id="@+id/btnLogon"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_below="@+id/screenNumber"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="54dp"
-        android:layout_marginEnd="54dp" />
+        android:layout_marginBottom="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/image"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -36,37 +35,39 @@
         android:ems="10"
         android:id="@+id/name"
         android:layout_gravity="center_horizontal|top"
-        android:layout_below="@+id/screenNumber"
-        android:layout_alignStart="@+id/screenNumber"
-        android:text="Username" />
+        android:text="Username"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ScreenNumber"
         android:id="@+id/textView2"
-        android:layout_alignBottom="@+id/screenNumber"
-        android:layout_alignParentStart="true"
         android:layout_gravity="left"
-        android:layout_marginLeft="16dp" />
+        android:layout_alignBottom="@+id/screenNumber"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LoginName"
         android:id="@+id/textView3"
+        android:layout_alignBaseline="@+id/name"
         android:layout_alignBottom="@+id/name"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="16dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Question"
         android:id="@+id/textView4"
-        android:layout_marginTop="28dp"
-        android:layout_below="@+id/textView3"
-        android:layout_alignStart="@+id/textView3" />
+        android:layout_alignBottom="@+id/question"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -75,97 +76,37 @@
         android:ems="10"
         android:id="@+id/question"
         android:layout_gravity="center_horizontal|top"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_alignStart="@+id/name"
-        android:text="Favorite day?" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextAlt1"
-        android:layout_below="@+id/question"
-        android:layout_alignLeft="@+id/question"
-        android:layout_alignStart="@+id/question"
-        android:layout_alignRight="@+id/question"
-        android:layout_alignEnd="@+id/question"
-        android:text="Saturday" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextAlt2"
-        android:layout_below="@+id/editTextAlt1"
-        android:layout_alignLeft="@+id/editTextAlt1"
-        android:layout_alignStart="@+id/editTextAlt1"
-        android:layout_alignRight="@+id/editTextAlt1"
-        android:layout_alignEnd="@+id/editTextAlt1"
-        android:text="Friday" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextAlt3"
-        android:layout_below="@+id/editTextAlt2"
-        android:layout_alignLeft="@+id/editTextAlt2"
-        android:layout_alignStart="@+id/editTextAlt2"
-        android:layout_alignRight="@+id/editTextAlt2"
-        android:layout_alignEnd="@+id/editTextAlt2"
-        android:text="Wensday" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextAlt4"
-        android:layout_below="@+id/editTextAlt3"
-        android:layout_alignLeft="@+id/editTextAlt3"
-        android:layout_alignStart="@+id/editTextAlt3"
-        android:layout_alignRight="@+id/editTextAlt3"
-        android:layout_alignEnd="@+id/editTextAlt3"
-        android:text="Monday" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="#1"
-        android:id="@+id/textView5"
-        android:layout_above="@+id/editTextAlt2"
-        android:layout_toLeftOf="@+id/editTextAlt1"
-        android:layout_toStartOf="@+id/editTextAlt1" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="#1"
-        android:id="@+id/textView6"
-        android:layout_alignBottom="@+id/editTextAlt2"
-        android:layout_toLeftOf="@+id/editTextAlt2"
-        android:layout_toStartOf="@+id/editTextAlt2" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="#1"
-        android:id="@+id/textView7"
-        android:layout_above="@+id/editTextAlt4"
-        android:layout_toLeftOf="@+id/editTextAlt3"
-        android:layout_toStartOf="@+id/editTextAlt3" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="#1"
-        android:id="@+id/textView8"
-        android:layout_alignBottom="@+id/editTextAlt4"
-        android:layout_toLeftOf="@+id/editTextAlt4"
-        android:layout_toStartOf="@+id/editTextAlt4" />
+        android:text="Favorite day?"
+        android:layout_below="@+id/screenNumber"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:entries="@array/Themes"
+        android:layout_above="@+id/btnLogon"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="55dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="numOfAlts"
+        android:id="@+id/textView5"
+        android:layout_above="@+id/theNumOfAlts"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/theNumOfAlts"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/btnLogon"
-        android:layout_alignStart="@+id/btnLogon" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:entries="@array/numOfAlts"/>
 
 </RelativeLayout>
