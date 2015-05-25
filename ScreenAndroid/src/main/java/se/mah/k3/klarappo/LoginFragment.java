@@ -123,7 +123,7 @@ public class LoginFragment extends Fragment implements ValueEventListener {
                 FragmentManager fm;
                 fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.container, new AlternativeInput());
+                //ft.replace(R.id.container, new AlternativeInput());
                 ft.commit();
             }   else {
                 Toast.makeText(getActivity(),"Not the correct Screen",Toast.LENGTH_LONG).show();

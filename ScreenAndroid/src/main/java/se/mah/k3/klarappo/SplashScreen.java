@@ -34,17 +34,19 @@ public class SplashScreen extends Fragment {
 
 
     public void checkRun() {
-        myFirebaseRef = new Firebase("https://popping-torch-1741.firebaseio.com/Active");
+        myFirebaseRef = Constants.checkmyFirebaseRef(); //With this there is only one ref to firebase. Use Always
 
+        Firebase refToBoolean = myFirebaseRef.child("timeToRun"); //Or what your boolean is called CHANGE HERE
 
-
-        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+        refToBoolean.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+
                 //timeToRun = snapshot.getValue();
                 System.out.println(snapshot.getValue());
 
+                //You should only listen for changes on a specific part
                 timeToRun = (boolean) snapshot.getValue();
 
 
