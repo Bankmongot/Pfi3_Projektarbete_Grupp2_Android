@@ -36,9 +36,9 @@ public class SplashScreen extends Fragment {
     public void checkRun() {
         myFirebaseRef = Constants.checkmyFirebaseRef(); //With this there is only one ref to firebase. Use Always
 
-        Firebase refToBoolean = myFirebaseRef.child("timeToRun"); //Or what your boolean is called CHANGE HERE
+        Firebase refToActiveBoolean = myFirebaseRef.child("Active"); //Or what your boolean is called CHANGE HERE
 
-        refToBoolean.addValueEventListener(new ValueEventListener() {
+        refToActiveBoolean.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot snapshot) {
