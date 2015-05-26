@@ -24,6 +24,10 @@ public class AlternativeInput extends Fragment implements ValueEventListener {
         // Required empty public constructor
     }
 
+    public void setNumOfInputBoxes(){
+        int index = Constants.numOfAlts;
+    }
+
 
 
 

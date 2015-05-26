@@ -18,15 +18,13 @@
         android:layout_alignParentEnd="true" />
 
     <Button
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:text=""
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:text="DONT CLICK"
         android:id="@+id/btnLogon"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="48dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/image"/>
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -86,27 +84,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:entries="@array/Themes"
-        android:layout_above="@+id/btnLogon"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="55dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="numOfAlts"
-        android:id="@+id/textView5"
-        android:layout_above="@+id/theNumOfAlts"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2" />
+        android:layout_below="@+id/theNumOfAlts"
+        android:layout_alignRight="@+id/name"
+        android:layout_alignEnd="@+id/name" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/theNumOfAlts"
-        android:layout_centerVertical="true"
+        android:entries="@array/numOfAlts"
+        android:layout_below="@+id/name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:entries="@array/numOfAlts"/>
+        android:layout_marginTop="49dp" />
 
 </RelativeLayout>

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +32,7 @@ import java.util.Map;
 
 public class LoginFragment extends Fragment implements ValueEventListener {
 
+    private Firebase myFirebaseRef;
 
 
 
@@ -36,24 +40,20 @@ public class LoginFragment extends Fragment implements ValueEventListener {
         // Required empty public constructor
     }
 
-
-
     public void sendQuestion(){
         EditText question = (EditText) getActivity().findViewById(R.id.question);
         Constants.question = question.getText().toString();
-        Log.d("LoginFragment", "Ettttt");
 
         Log.d("LoginFragment", Constants.question);
-        Constants.checkmyFirebaseRef().child(Constants.userName).child("Question").setValue(Constants.question);
-
-        //Log.d("LoginFragment", String.valueOf(Constants.myFirebaseRef));
+        Constants.checkmyFirebaseRef().child(Constants.ID).child("Question").setValue(Constants.question);
     }
 
     public void numberOfAlternatives(){
-        Firebase answerRef = Constants.checkmyFirebaseRef().child(Constants.userName).child("numOfAlternatives");
+        Firebase answerRef = Constants.checkmyFirebaseRef().child(Constants.ID).child("numOfAlternatives");
 
         Spinner numOfAlts = (Spinner) getActivity().findViewById(R.id.theNumOfAlts);
         int theAlts = numOfAlts.getSelectedItemPosition();
+        Constants.numOfAlts = theAlts;
 
         answerRef.setValue(theAlts);
     }
@@ -61,14 +61,24 @@ public class LoginFragment extends Fragment implements ValueEventListener {
     public void sendTheme(){
         Spinner spinner = (Spinner) getActivity().findViewById(R.id.spinner);
         String theme = spinner.getSelectedItem().toString();
-        Log.d("LoginFragment", "Tvååååå");
 
-
-        Constants.checkmyFirebaseRef().child(Constants.userName).child("Theme").setValue(theme);
+        Constants.checkmyFirebaseRef().child(Constants.ID).child("Theme").setValue(theme);
     }
 
+    public void genRandom(){
+        SecureRandom random = new SecureRandom();
 
+        String value = new BigInteger(130, random).toString(32);
 
+        Constants.ID = value;
+    }
+
+    public void sendUsername(){
+        EditText name = (EditText) getActivity().findViewById(R.id.name);
+        Constants.userName = name.getText().toString();
+
+        Constants.checkmyFirebaseRef().child(Constants.ID).child("Creator").setValue(Constants.userName);
+    }
 
 
 
@@ -76,24 +86,77 @@ public class LoginFragment extends Fragment implements ValueEventListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View returnView = inflater.inflate(R.layout.fragment_login, container, false);
-        Log.d("LoginFragment", "1");
-        View v = returnView.findViewById(R.id.btnLogon);
-        v.setOnClickListener(new View.OnClickListener() {
-            //Click on loginButton
+        Log.d("LoginFragment", "Inside OncreateView");
+
+
+        Button d = (Button) returnView.findViewById(R.id.btnLogon);
+        d.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("LoginFragment", "Pressed Login button");
 
-                //In firebase you read a value by adding a listener, then it will trigger once connected and on all changes.
-                //There is no readvalue as one could expect only listeners.
-                //Get the ScreenNbr child
                 Firebase fireBaseEntryForScreenNbr = Constants.checkmyFirebaseRef().child("ScreenNbr");
-                //Ok listen the changes will sho up in the method onDataChange
+
+                logMeIn();
                 fireBaseEntryForScreenNbr.addValueEventListener(LoginFragment.this);
             }
 
         });
-        Log.d("LoginFragment", "2");
-        return returnView;
+
+
+        return inflater.inflate(R.layout.fragment_login, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d("LoginFragment", "Activity Created");
+    }
+
+
+    public void logMeIn(){
+        Log.d("LoginFragment", "LogMeIn init");
+
+        myFirebaseRef = Constants.checkmyFirebaseRef();
+        Firebase refNbr = myFirebaseRef.child("ScreenNbr");
+
+        refNbr.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                long val = (long) snapshot.getValue();
+                String screenNbrFromFirebase = String.valueOf(val);
+                Log.i("LoginFragment", "Screen nbr entered: " + val + " Value from firebase: "+screenNbrFromFirebase);
+                EditText screenNumber = (EditText) getActivity().findViewById(R.id.screenNumber);
+
+
+
+                //Are we on the right screen
+                if (screenNbrFromFirebase.equals(screenNumber.getText().toString())){
+                    Log.i("LoginFragment", "Logged in");
+
+                    genRandom();
+                    sendUsername();
+                    sendQuestion();
+                    sendTheme();
+                    numberOfAlternatives();
+
+                    FragmentManager fm;
+                    fm = getFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.container, new AlternativeInput());
+                    ft.commit();
+                }   else {
+                    Toast.makeText(getActivity(),"Not the correct Screen",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
     }
 
 
@@ -101,34 +164,8 @@ public class LoginFragment extends Fragment implements ValueEventListener {
 
     @Override
     public void onDataChange(DataSnapshot snapshot) {
-        Log.d("LoginFragment", "3");
         if (snapshot.getValue()!=null) {
-            Log.d("LoginFragment", "4");
-            long val = (long) snapshot.getValue();
-            String screenNbrFromFirebase = String.valueOf(val);
-            Log.i("LoginFragment", "Screen nbr entered: " + val + " Value from firebase: "+screenNbrFromFirebase);
-            EditText screenNumber = (EditText) getActivity().findViewById(R.id.screenNumber);
-
-           // EditText name = (EditText) getActivity().findViewById(R.id.name);
-           // Constants.userName = name.getText().toString();
-
-            Log.d("LoginFragment", "5");
-            //Are we on the right screen
-            if (screenNbrFromFirebase.equals(screenNumber.getText().toString())){
-                Log.i("LoginFragment", "Logged in");
-
-                sendQuestion();
-                sendTheme();
-                numberOfAlternatives();
-
-                FragmentManager fm;
-                fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.container, new AlternativeInput());
-                ft.commit();
-            }   else {
-                Toast.makeText(getActivity(),"Not the correct Screen",Toast.LENGTH_LONG).show();
-            }
+            Log.i("LoginFragment", "DATASNAPSHOT IS NOT NULL");
         }
     }
 

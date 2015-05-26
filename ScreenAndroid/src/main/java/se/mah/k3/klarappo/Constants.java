@@ -12,7 +12,10 @@ public class Constants {
     public static String alt3 = "";
     public static String alt4 = "";
 
+    public static String ID;
+
     public static boolean alreadyRunning = false;
+    public static boolean runItOnce = true;
 
     public static int numOfAlts;
 
@@ -21,7 +24,7 @@ public class Constants {
     public static String URL = "https://popping-torch-1741.firebaseio.com/";
 
 
-    //This >SOLVED< the "hidden" conflict where Firebase cannot handle multiple references
+    //Firebase cannot handle multiple references
     public static Firebase checkmyFirebaseRef(){
         if(myFirebaseRef == null){
            myFirebaseRef = new Firebase("https://popping-torch-1741.firebaseio.com/");
