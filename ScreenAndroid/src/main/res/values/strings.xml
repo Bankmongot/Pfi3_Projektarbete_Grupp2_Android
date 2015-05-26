@@ -19,7 +19,7 @@
         <item>Dummy</item>
     </string-array>
 
-    <integer-array name="numOfAlts">
+    <string-array name="numOfAlts">
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -27,5 +27,5 @@
         <item>5</item>
         <item>6</item>
 
-    </integer-array>
+    </string-array>
 </resources>
