@@ -14,6 +14,8 @@ public class Constants {
 
     public static String ID;
 
+    public static boolean theBoolean;
+
     public static boolean alreadyRunning = false;
     public static boolean runItOnce = true;
 

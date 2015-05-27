@@ -26,11 +26,8 @@ import java.util.Map;
 
 
 public class MainFragment extends Fragment implements View.OnClickListener, View.OnTouchListener, ValueEventListener{
-    long lastTimeStamp = System.currentTimeMillis();
-    long timeLastRound;
     int width;
     int height;
-    private long roundTrip = 0;
     private Firebase myFirebaseRef;
 
 
@@ -46,63 +43,79 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         display.getSize(size);
         width = size.x;
         height = size.y;
+        Log.d("MainFragment", "MainFragment view created");
 
-        Constants.alreadyRunning = true;
 
-        //Add listeners for the touch events onTouch will be called when screen is touched.
         rootView.setOnTouchListener(this);
 
-        //Add listeners to initiate a measure of roundtrip time onClick will be called.
         rootView.findViewById(R.id.buttonAlt1).setOnClickListener(this);
         rootView.findViewById(R.id.buttonAlt2).setOnClickListener(this);
         rootView.findViewById(R.id.buttonAlt3).setOnClickListener(this);
         rootView.findViewById(R.id.buttonAlt4).setOnClickListener(this);
 
 
-        //Create listeners for response time back so know when the token returns
         getUsername();
 
-
-       // Firebase fireBaseEntryForMyID = Constants.myFirebaseRef.child(Constants.userName); //My part of the firebase
-       // Firebase fireBaseEntryForRoundBack =  fireBaseEntryForMyID.child("RoundTripBack"); //My roundtrip (Check firebase)
-        //Listen for changes on "RoundTripBack" entry onDataChange will be called when "RoundTripBack" is changed
-        //fireBaseEntryForRoundBack.addValueEventListener(this);
         return rootView;
     }
 
+
     public void getUsername() {
-        myFirebaseRef = new Firebase("https://popping-torch-1741.firebaseio.com/Username");
+        Constants.alreadyRunning = true;
 
-
+        myFirebaseRef = Constants.checkmyFirebaseRef();
 
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
-                Map<String, Object> newPost = (Map<String, Object>) snapshot.getValue();
                 Iterable<DataSnapshot> fourChildren = snapshot.getChildren();
                 for (DataSnapshot dataSnapshot2 : fourChildren) {
-                    if (dataSnapshot2.getKey().equals("key")) {
-                        Constants.userName = (String) snapshot.getValue();
+                    String temp;
+                    if (dataSnapshot2.getKey().length() == 26) {
+                        temp = dataSnapshot2.getKey();
+                        System.out.println(temp);
+
+                        if(getTempActive(temp)== true){
+                            Constants.ID = temp;
+                        }
+                        Log.d("AlternativeInput", "the ID is "+Constants.ID);
+
                     }
-
-
                 }
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
+    }
 
+    public boolean getTempActive(String temp){
+        Firebase tempRef = new Firebase("https://popping-torch-1741.firebaseio.com/"+temp+"/Active");
+
+        tempRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if(snapshot.getValue() != null) {
+                    boolean tempBoolz = (boolean)snapshot.getValue();
+                    if(tempBoolz == true) {
+                        Constants.theBoolean = (boolean) snapshot.getValue();
+                    }
+                }
             }
 
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
         });
-
+        return Constants.theBoolean;
     }
 
 
     public void updateVote(String vote) {
-        Firebase upvotesRef = new Firebase("https://popping-torch-1741.firebaseio.com/"+Constants.userName+"/"+vote);
+        Firebase upvotesRef = new Firebase("https://popping-torch-1741.firebaseio.com/"+Constants.ID+"/"+vote);
 
         upvotesRef.runTransaction(new Transaction.Handler() {
             @Override
@@ -124,7 +137,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
     }
 
 
-     //Start a new time measure of roundtrip time
      @Override
     public void onClick(View v) {
 
@@ -142,39 +154,19 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
          }
     }
 
-    //called if we move on the screen send the coordinates to fireBase
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         switch (event.getAction()) {
-            case MotionEvent.ACTION_MOVE:  // If it is the motionEvent move.
-
-               // Constants.myFirebaseRef.child(Constants.userName).child("Question").setValue(Constants.question);
-
         }
-        return true; //Ok we consumed the event and no-one can use it it is ours!
+        return true;
     }
 
-    //This is called when the roundtrip is completed so show the time
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
-        if (roundTrip > 0 && dataSnapshot != null) {
-            roundTrip = (long) dataSnapshot.getValue();
-            timeLastRound = System.currentTimeMillis() - lastTimeStamp;
-            //TextView timeLastTV = (TextView) getActivity().findViewById(R.id.timelast);
-           // timeLastTV.setText("" + timeLastRound);
-        }
     }
 
     @Override
     public void onCancelled(FirebaseError firebaseError) {
-
     }
-
-
-
-
-
-
-
 }
 

@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
@@ -22,8 +21,7 @@ import com.firebase.client.ValueEventListener;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.util.HashMap;
-import java.util.Map;
+
 
 
 /**
@@ -53,7 +51,9 @@ public class LoginFragment extends Fragment implements ValueEventListener {
 
         Spinner numOfAlts = (Spinner) getActivity().findViewById(R.id.theNumOfAlts);
         int theAlts = numOfAlts.getSelectedItemPosition();
+        theAlts =+2;
         Constants.numOfAlts = theAlts;
+
 
         answerRef.setValue(theAlts);
     }
@@ -63,6 +63,10 @@ public class LoginFragment extends Fragment implements ValueEventListener {
         String theme = spinner.getSelectedItem().toString();
 
         Constants.checkmyFirebaseRef().child(Constants.ID).child("Theme").setValue(theme);
+    }
+
+    public void sendActiveState(){
+        Constants.checkmyFirebaseRef().child(Constants.ID).child("Active").setValue(true);
     }
 
     public void genRandom(){
@@ -92,7 +96,7 @@ public class LoginFragment extends Fragment implements ValueEventListener {
         Button d = (Button) returnView.findViewById(R.id.btnLogon);
         d.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View returnView) {
                 Log.d("LoginFragment", "Pressed Login button");
 
                 Firebase fireBaseEntryForScreenNbr = Constants.checkmyFirebaseRef().child("ScreenNbr");
@@ -104,7 +108,7 @@ public class LoginFragment extends Fragment implements ValueEventListener {
         });
 
 
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        return returnView;
     }
 
     @Override
@@ -141,6 +145,7 @@ public class LoginFragment extends Fragment implements ValueEventListener {
                     sendQuestion();
                     sendTheme();
                     numberOfAlternatives();
+                    sendActiveState();
 
                     FragmentManager fm;
                     fm = getFragmentManager();
@@ -172,6 +177,5 @@ public class LoginFragment extends Fragment implements ValueEventListener {
     @Override
     public void onCancelled(FirebaseError firebaseError) {
         Log.d("LoginFragment", "Error: "+firebaseError);
-
     }
 }
