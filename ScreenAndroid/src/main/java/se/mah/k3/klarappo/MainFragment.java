@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.firebase.client.DataSnapshot;
@@ -48,15 +50,30 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
 
         rootView.setOnTouchListener(this);
 
-        rootView.findViewById(R.id.buttonAlt1).setOnClickListener(this);
-        rootView.findViewById(R.id.buttonAlt2).setOnClickListener(this);
-        rootView.findViewById(R.id.buttonAlt3).setOnClickListener(this);
-        rootView.findViewById(R.id.buttonAlt4).setOnClickListener(this);
+
 
 
         getUsername();
 
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState){
+        LinearLayout ll = (LinearLayout) view.findViewById(R.id.linearLayoutVote);
+
+
+        for(int i = 0; i<Constants.numOfAlts; i++) {
+
+            Button b = new Button(getActivity());
+            b.setText("Alternative " + i + 1);
+            b.setOnClickListener(this);
+            String theID = Integer.toString(i+1);
+            ll.addView(b);
+
+        }
+
+
     }
 
 
@@ -75,13 +92,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
                     String temp;
                     if (dataSnapshot2.getKey().length() == 26) {
                         temp = dataSnapshot2.getKey();
-                        System.out.println(temp);
 
-                        if(getTempActive(temp)== true){
-                            Constants.ID = temp;
-                        }
-                        Log.d("AlternativeInput", "the ID is "+Constants.ID);
-
+                        getTempActive(temp);
                     }
                 }
             }
@@ -92,17 +104,18 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         });
     }
 
-    public boolean getTempActive(String temp){
+    public void getTempActive(String temp){
         Firebase tempRef = new Firebase("https://popping-torch-1741.firebaseio.com/"+temp+"/Active");
+        final String dasTemp = temp;
 
         tempRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                if(snapshot.getValue() != null) {
-                    boolean tempBoolz = (boolean)snapshot.getValue();
-                    if(tempBoolz == true) {
-                        Constants.theBoolean = (boolean) snapshot.getValue();
-                    }
+
+                Constants.theBoolean = (boolean)snapshot.getValue();
+                if(Constants.theBoolean == true){
+                    Constants.ID = dasTemp;
+                    Log.d("AlternativeInput", "the ID is "+Constants.ID);
                 }
             }
 
@@ -110,7 +123,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
             public void onCancelled(FirebaseError firebaseError) {
             }
         });
-        return Constants.theBoolean;
     }
 
 
@@ -140,7 +152,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
      @Override
     public void onClick(View v) {
 
-         if (v.getId()==R.id.buttonAlt1){
+        /* if (v.getId()==R.id.buttonAlt1){
              updateVote("Vote1");
          }
          if (v.getId()==R.id.buttonAlt2){
@@ -151,7 +163,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
          }
          if (v.getId()==R.id.buttonAlt4){
              updateVote("Vote4");
-         }
+         } */
     }
 
     @Override

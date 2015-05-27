@@ -7,38 +7,9 @@
     tools:context=".MainActivity$PlaceholderFragment">
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/buttonAlt1" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/buttonAlt2"
-        android:layout_below="@+id/buttonAlt1"
-        android:layout_alignLeft="@+id/buttonAlt1"
-        android:layout_alignStart="@+id/buttonAlt1" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/buttonAlt3"
-        android:layout_below="@+id/buttonAlt2"
-        android:layout_alignRight="@+id/buttonAlt2"
-        android:layout_alignEnd="@+id/buttonAlt2" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/buttonAlt4"
-        android:layout_below="@+id/buttonAlt3"
-        android:layout_alignLeft="@+id/buttonAlt3"
-        android:layout_alignStart="@+id/buttonAlt3" />
-
-
+    <LinearLayout
+        android:id="@+id/linearLayoutVote"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></LinearLayout>
 </RelativeLayout>
