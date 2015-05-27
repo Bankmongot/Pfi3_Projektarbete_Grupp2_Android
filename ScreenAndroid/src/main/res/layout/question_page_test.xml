@@ -75,7 +75,7 @@
         android:layout_height="38dp"
         android:layout_marginLeft="15dp"
         android:id="@+id/spinnerAlt"
-        android:entries="@string-array/numOfAlts"
+        android:entries="@array/numOfAlts"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#ff000000"
         android:background="#ffffffff"/>
