@@ -43,7 +43,6 @@ public class SplashScreen extends Fragment {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
-                //timeToRun = snapshot.getValue();
                 System.out.println(snapshot.getValue());
 
                 //You should only listen for changes on a specific part
@@ -83,7 +82,10 @@ public class SplashScreen extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        checkRun();
+        if(Constants.runItOnce == true) {
+            checkRun();
+            Constants.runItOnce = false;
+        }
         return inflater.inflate(R.layout.fragment_splash_screen, container, false);
 
     }
