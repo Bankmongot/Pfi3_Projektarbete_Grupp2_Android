@@ -7,7 +7,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff99cc00">
+    android:background="#ff99cc00"
+    android:weightSum="1">
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,21 +26,22 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/QuestionEdit"
         android:layout_gravity="center_horizontal"
         android:background="#ffffffff"
-        android:height="120dp"
+        android:height="140dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:inputType="textMultiLine"
         android:layout_marginBottom="40dp"
-        android:textColor="#ff000000" />
+        android:textColor="#ff000000"
+        android:layout_weight="0.10" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/Alt1"
+        android:text="@string/User"
         android:id="@+id/textViewAlt1"
         android:layout_marginLeft="15dp"
         android:textColor="#ffffffff"
@@ -48,84 +50,64 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/fieldAlt1"
+        android:id="@+id/UserNameEdit"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="#ffffffff"
         android:height="40dp"
         android:textColor="#ff000000"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="40dp"
+        android:layout_weight="0.07" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/Alt2"
-        android:id="@+id/textViewAlt2"
+        android:text="@string/Alt1"
+        android:id="@+id/textViewAlt"
         android:layout_marginLeft="15dp"
         android:textColor="#ffffffff"
         android:textSize="25dp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fieldAlt2"
+
+    <Spinner
+        android:layout_width="254dp"
+        android:layout_height="38dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="#ffffffff"
-        android:height="40dp"
+        android:id="@+id/spinnerAlt"
+        android:entries="@string-array/numOfAlts"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#ff000000"
-        android:layout_marginBottom="40dp" />
+        android:background="#ffffffff"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/Alt3"
+        android:text="@string/Theme"
         android:id="@+id/textViewAlt3"
         android:layout_marginLeft="15dp"
         android:textColor="#ffffffff"
         android:textSize="25dp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fieldAlt3"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="#ffffffff"
-        android:height="40dp"
-        android:textColor="#ff000000"
-        android:layout_marginBottom="40dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Spinner
+        android:layout_width="256dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/spinnerTheme"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/Alt4"
-        android:id="@+id/textViewAlt4"
-        android:layout_marginLeft="15dp"
-        android:textColor="#ffffffff"
-        android:textSize="25dp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fieldAlt4"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="#ffffffff"
-        android:height="40dp"
         android:textColor="#ff000000"
-        android:layout_marginBottom="40dp" />
+        android:background="#ffffffff"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="134dp"
         android:layout_height="wrap_content"
         android:text="@string/qButtonText"
         android:id="@+id/button5"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="40dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 
 </LinearLayout>

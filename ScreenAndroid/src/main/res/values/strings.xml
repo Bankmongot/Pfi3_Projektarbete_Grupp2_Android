@@ -6,11 +6,11 @@
 
 
     <string name="qTitle">Write a question:</string>
-    <string name="Alt1">Alternative 1</string>
-    <string name="Alt2">Alternative 2</string>
-    <string name="Alt3">Alternative 3</string>
-    <string name="Alt4">Alternative 4</string>
-    <string name="qButtonText">SEND</string>
+    <string name="User">Username:</string>
+    <string name="Alt1">Alternatives:</string>
+    <string name="Theme">Theme:</string>
+    <string name="qButtonText">NEXT</string>
+    <string name="qButtonText2">SEND</string>
 
     <string name="aTitle">This is a question?</string>
 
