@@ -23,6 +23,7 @@ public class SplashScreen extends Fragment {
 
     private boolean timeToRun;
     private Firebase myFirebaseRef;
+    private boolean runOnlyOnce = true;
 
 
 
@@ -46,22 +47,25 @@ public class SplashScreen extends Fragment {
                 timeToRun = (boolean) snapshot.getValue();
 
 
-                if(timeToRun == false){
-                    Log.d("SplashScreen", "false, expanding LoginFragment!");
-                    FragmentManager fm;
-                    fm = getFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    ft.replace(R.id.container, new LoginFragment());
-                    ft.commit();
-                } else if ( timeToRun == true && Constants.alreadyRunning == false){
-                    Log.d("SplashScreen", "true, expanding MainFragment!");
-                    Constants.alreadyRunning = true;
-                    FragmentManager fm;
-                    fm = getFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    ft.replace(R.id.container, new MainFragment());
-                    ft.commit();
+                if (runOnlyOnce == true) {
+                    if (timeToRun == false) {
+                        Log.d("SplashScreen", "false, expanding LoginFragment!");
+                        FragmentManager fm;
+                        fm = getFragmentManager();
+                        FragmentTransaction ft = fm.beginTransaction();
+                        ft.replace(R.id.container, new LoginFragment());
+                        ft.commit();
+                    } else if (timeToRun == true && Constants.alreadyRunning == false) {
+                        Log.d("SplashScreen", "true, expanding MainFragment!");
+                        Constants.alreadyRunning = true;
+                        FragmentManager fm;
+                        fm = getFragmentManager();
+                        FragmentTransaction ft = fm.beginTransaction();
+                        ft.replace(R.id.container, new MainFragment());
+                        ft.commit();
+                    }
                 }
+                runOnlyOnce = false;
             }
 
             @Override
