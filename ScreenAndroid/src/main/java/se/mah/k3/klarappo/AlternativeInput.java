@@ -49,6 +49,7 @@ public class AlternativeInput extends Fragment implements ValueEventListener, Vi
     private ArrayList <EditText> myEditTexts = new ArrayList<>();
     private int x = 0;
 
+
     public AlternativeInput() {
         // Required empty public constructor
     }
@@ -91,19 +92,29 @@ public class AlternativeInput extends Fragment implements ValueEventListener, Vi
      }
 
     public void prepareToSend() {
+         int counter = 0;
+         int counter2 = 0;
+
         for (EditText et : myEditTexts) {
-            System.out.println(et.getText().toString());
-            if (et.getText().toString() != null) {
+            counter = counter+1;
+            String temp = et.getText().toString();
+            System.out.println(temp);
+            if (("".equals(temp) || (" ".equals(temp))) || temp == null) {
+                Log.d("AlternativeInput", "The EditText did not contain text");
+                Toast.makeText(getActivity(),"Please fill all fields.",Toast.LENGTH_SHORT).show();
+            } else {
+                counter2 = counter2+1;
                 String x = et.getText().toString();
                 sendMyEditTexts(x);
-            } else {
-                Context context = getActivity();
-                CharSequence text = "Fill all fields.";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                System.out.println("The edittext " + x);
             }
+        }
+        if(counter == counter2){
+            sendMeToVote();
+        } else{
+            System.out.println(counter+" "+counter2);
+            counter = 0;
+            counter2 = 0;
         }
     }
 
@@ -161,7 +172,6 @@ public class AlternativeInput extends Fragment implements ValueEventListener, Vi
     public void onClick(View view) {
         if(view.getId()==R.id.button){
             prepareToSend();
-            sendMeToVote();
         }
     }
 }
