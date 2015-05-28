@@ -23,6 +23,7 @@ import com.firebase.client.MutableData;
 import com.firebase.client.Transaction;
 import com.firebase.client.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +32,11 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
     int width;
     int height;
     private Firebase myFirebaseRef;
+    private ArrayList <Button> myButtonArray;
+    private View publicView;
+    private LinearLayout ll;
+
+
 
 
     public MainFragment() {
@@ -50,30 +56,45 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
 
         rootView.setOnTouchListener(this);
 
-
-
-
         getUsername();
 
         return rootView;
     }
 
+
+    public Button createButton(int _id){
+        _id++;
+        System.out.println("Inside to create button "+_id);
+        Button b = new Button(getActivity());
+        b.setId(_id);
+        b.setOnClickListener(this);
+        b.setText("Alt: " + Integer.toString(_id));
+        myButtonArray.add(b);
+
+
+        return b;
+    }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
-        LinearLayout ll = (LinearLayout) view.findViewById(R.id.linearLayoutVote);
+        ll = (LinearLayout) view.findViewById(R.id.linearLayoutVote);
+        publicView = this.getView();
+
+        Log.d("MainFragment", "View created");
 
 
-        for(int i = 0; i<Constants.numOfAlts; i++) {
+    }
 
-            Button b = new Button(getActivity());
-            b.setText("Alternative " + i + 1);
-            b.setOnClickListener(this);
-            String theID = Integer.toString(i+1);
-            ll.addView(b);
-
+    public void drawButtons(){
+        if (Constants.numOfAlts != null) {
+            for (int i = 0; i < Constants.numOfAlts; i++) {
+                System.out.println("Button: " + i + " added.");
+                ll.addView(createButton(i));
+                System.out.println("Button added to view, or?...");
+            }
+        } else{
+            System.out.println("numOfAlts is null, gotta fix it. "+Constants.numOfAlts);
         }
-
-
     }
 
 
@@ -104,6 +125,32 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         });
     }
 
+    public void getNumOfAlts(String temp){
+        Firebase tempRef = new Firebase("https://popping-torch-1741.firebaseio.com/"+temp+"/numOfAlternatives");
+
+        System.out.println("The url is" + tempRef);
+
+
+        tempRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                Log.d("xxxxxxxxxxx     ", ""+snapshot);
+
+                if(snapshot != null) {
+                    Constants.numOfAlts = (Long) snapshot.getValue();
+                    Log.d("MainFragment", "numOfAlts is " + Constants.numOfAlts);
+                } else{
+                    System.out.println("!!!!!   the snapshot data is null");
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
+    }
+
     public void getTempActive(String temp){
         Firebase tempRef = new Firebase("https://popping-torch-1741.firebaseio.com/"+temp+"/Active");
         final String dasTemp = temp;
@@ -115,6 +162,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
                 Constants.theBoolean = (boolean)snapshot.getValue();
                 if(Constants.theBoolean == true){
                     Constants.ID = dasTemp;
+                    getNumOfAlts(dasTemp);
                     Log.d("AlternativeInput", "the ID is "+Constants.ID);
                 }
             }
@@ -123,11 +171,15 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
             public void onCancelled(FirebaseError firebaseError) {
             }
         });
+
+        drawButtons();
     }
 
 
     public void updateVote(String vote) {
         Firebase upvotesRef = new Firebase("https://popping-torch-1741.firebaseio.com/"+Constants.ID+"/"+vote);
+
+
 
         upvotesRef.runTransaction(new Transaction.Handler() {
             @Override
@@ -151,19 +203,11 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
 
      @Override
     public void onClick(View v) {
-
-        /* if (v.getId()==R.id.buttonAlt1){
-             updateVote("Vote1");
+         for(Button b: myButtonArray){
+             if(v.getId()==b.getId()){
+                 updateVote(b.getText().toString());
+             }
          }
-         if (v.getId()==R.id.buttonAlt2){
-             updateVote("Vote2");
-         }
-         if (v.getId()==R.id.buttonAlt3){
-             updateVote("Vote3");
-         }
-         if (v.getId()==R.id.buttonAlt4){
-             updateVote("Vote4");
-         } */
     }
 
     @Override

@@ -52,7 +52,7 @@ public class LoginFragment extends Fragment implements ValueEventListener {
         Spinner numOfAlts = (Spinner) getActivity().findViewById(R.id.theNumOfAlts);
         int theAlts = numOfAlts.getSelectedItemPosition();
         theAlts = theAlts+2;
-        Constants.numOfAlts = theAlts;
+        Constants.numOfAlts = Long.valueOf(theAlts);
 
 
         answerRef.setValue(theAlts);
