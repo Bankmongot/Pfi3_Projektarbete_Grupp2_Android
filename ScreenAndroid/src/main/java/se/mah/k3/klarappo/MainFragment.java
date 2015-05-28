@@ -3,8 +3,10 @@ package se.mah.k3.klarappo;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -14,7 +16,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -26,13 +30,14 @@ import com.firebase.client.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Handler;
 
 
 public class MainFragment extends Fragment implements View.OnClickListener, View.OnTouchListener, ValueEventListener{
     int width;
     int height;
     private Firebase myFirebaseRef;
-    private ArrayList <Button> myButtonArray;
+    private ArrayList <Button> myButtonArray = new ArrayList<>();
     private View publicView;
     private LinearLayout ll;
 
@@ -64,7 +69,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
 
     public Button createButton(int _id){
         _id++;
-        System.out.println("Inside to create button "+_id);
+        System.out.println("Inside to create button " + _id);
         Button b = new Button(getActivity());
         b.setId(_id);
         b.setOnClickListener(this);
@@ -81,20 +86,23 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         publicView = this.getView();
 
         Log.d("MainFragment", "View created");
-
-
+        delayFunction();
     }
 
     public void drawButtons(){
-        if (Constants.numOfAlts != null) {
-            for (int i = 0; i < Constants.numOfAlts; i++) {
-                System.out.println("Button: " + i + " added.");
-                ll.addView(createButton(i));
-                System.out.println("Button added to view, or?...");
+        int counter = 0;
+
+            if (Constants.numOfAlts != null) {
+                Log.d("MainFragment", "Alright, drawing "+Constants.numOfAlts+" buttons.");
+                for (int i = 0; i < Constants.numOfAlts; i++) {
+                    counter++;
+                    System.out.println("Button: " + i + " added.");
+                    ll.addView(createButton(i));
+                }
+            } else {
+                System.out.println("numOfAlts is null, gotta fix it. " + Constants.numOfAlts);
             }
-        } else{
-            System.out.println("numOfAlts is null, gotta fix it. "+Constants.numOfAlts);
-        }
+        Log.d("MainFragment", "There is " + counter + " buttons");
     }
 
 
@@ -128,18 +136,15 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
     public void getNumOfAlts(String temp){
         Firebase tempRef = new Firebase("https://popping-torch-1741.firebaseio.com/"+temp+"/numOfAlternatives");
 
-        System.out.println("The url is" + tempRef);
-
+        //System.out.println("The url is" + tempRef);
 
         tempRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
-                Log.d("xxxxxxxxxxx     ", "" + snapshot);
-
                 if (snapshot != null) {
                     Constants.numOfAlts = (Long) snapshot.getValue();
-                    Log.d("MainFragment", "numOfAlts is " + Constants.numOfAlts);
+                    //Log.d("MainFragment", "numOfAlts is " + Constants.numOfAlts);
                 } else {
                     System.out.println("!!!!!   the snapshot data is null");
                 }
@@ -163,7 +168,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
                 if (Constants.theBoolean == true) {
                     Constants.ID = dasTemp;
                     getNumOfAlts(dasTemp);
-                    Log.d("AlternativeInput", "the ID is " + Constants.ID);
+                    //Log.d("AlternativeInput", "the ID is " + Constants.ID);
                 }
             }
 
@@ -175,9 +180,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
 
 
     public void updateVote(String vote) {
-        Firebase upvotesRef = new Firebase("https://popping-torch-1741.firebaseio.com/"+Constants.ID+"/"+vote);
-
-
+        Firebase upvotesRef = new Firebase("https://popping-torch-1741.firebaseio.com/"+Constants.ID+"/Votes/"+vote);
 
         upvotesRef.runTransaction(new Transaction.Handler() {
             @Override
@@ -194,8 +197,36 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
             @Override
             public void onComplete(FirebaseError firebaseError, boolean committed, DataSnapshot currentData) {
                 //This method will be called once with the results of the transaction.
+                Log.d("MainFragment", "Commited: " + committed + ", " + "the current data is: " + currentData);
             }
         });
+    }
+
+    public void delayFunction(){
+        final ProgressDialog dialog = new ProgressDialog(getActivity());
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMessage("Loading. Please wait...");
+        dialog.setIndeterminate(true);
+        dialog.setCanceledOnTouchOutside(false);
+
+        new CountDownTimer(3000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                dialog.show();
+            }
+
+            public void onFinish() {
+                drawButtons();
+                dialog.hide();
+            }
+        }.start();
+    }
+
+    public Toast toastMaker(String text){
+        Toast t = new Toast(getActivity());
+        t.makeText(getActivity(), text, Toast.LENGTH_SHORT);
+        t.show();
+        return t;
     }
 
 
@@ -208,14 +239,12 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
          }
     }
 
+
+
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         switch (event.getAction()) {
         }
-
-        //Temporary, cant find another place to active drawButtons...
-        drawButtons();
-
         return true;
     }
 
