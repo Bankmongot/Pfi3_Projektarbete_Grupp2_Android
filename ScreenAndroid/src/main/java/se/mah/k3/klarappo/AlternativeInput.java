@@ -141,7 +141,16 @@ public class AlternativeInput extends Fragment implements ValueEventListener, Vi
 
     }
 
+    public void changeActiveState(){
+        Firebase ref = Constants.checkmyFirebaseRef().child("Active");
+
+        ref.setValue(true);
+    }
+
     public void sendMeToVote(){
+        changeActiveState();
+
+
         FragmentManager fm;
         fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
