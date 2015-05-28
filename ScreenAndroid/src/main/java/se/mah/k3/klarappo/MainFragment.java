@@ -135,12 +135,12 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
-                Log.d("xxxxxxxxxxx     ", ""+snapshot);
+                Log.d("xxxxxxxxxxx     ", "" + snapshot);
 
-                if(snapshot != null) {
+                if (snapshot != null) {
                     Constants.numOfAlts = (Long) snapshot.getValue();
                     Log.d("MainFragment", "numOfAlts is " + Constants.numOfAlts);
-                } else{
+                } else {
                     System.out.println("!!!!!   the snapshot data is null");
                 }
             }
@@ -159,11 +159,11 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
-                Constants.theBoolean = (boolean)snapshot.getValue();
-                if(Constants.theBoolean == true){
+                Constants.theBoolean = (boolean) snapshot.getValue();
+                if (Constants.theBoolean == true) {
                     Constants.ID = dasTemp;
                     getNumOfAlts(dasTemp);
-                    Log.d("AlternativeInput", "the ID is "+Constants.ID);
+                    Log.d("AlternativeInput", "the ID is " + Constants.ID);
                 }
             }
 
@@ -171,8 +171,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
             public void onCancelled(FirebaseError firebaseError) {
             }
         });
-
-        drawButtons();
     }
 
 
@@ -214,6 +212,10 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
     public boolean onTouch(View v, MotionEvent event) {
         switch (event.getAction()) {
         }
+
+        //Temporary, cant find another place to active drawButtons...
+        drawButtons();
+
         return true;
     }
 
