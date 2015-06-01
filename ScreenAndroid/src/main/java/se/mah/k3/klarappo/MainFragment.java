@@ -261,9 +261,13 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
          for(Button b: myButtonArray){
              if(v.getId()==b.getId()){
                  updateVote(b.getText().toString());
+
+
+
                  FragmentManager fm;
                  fm = getFragmentManager();
                  FragmentTransaction ft = fm.beginTransaction();
+                 ft.setCustomAnimations(R.anim.fadein, R.anim.fadeout);
                  ft.replace(R.id.container, new EndFragment());
                  ft.commit();
              }
