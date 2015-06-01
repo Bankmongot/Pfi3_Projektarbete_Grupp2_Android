@@ -76,7 +76,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         Button b = new Button(getActivity());
         b.setId(_id);
         b.setOnClickListener(this);
-        b.setText(text);
+        b.setText(_id+": "+text);
         myButtonArray.add(b);
 
 
