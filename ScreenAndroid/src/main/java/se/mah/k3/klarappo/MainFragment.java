@@ -200,7 +200,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
             public void onCancelled(FirebaseError firebaseError) {
             }
         });
-
     }
 
 
@@ -262,6 +261,11 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
          for(Button b: myButtonArray){
              if(v.getId()==b.getId()){
                  updateVote(b.getText().toString());
+                 FragmentManager fm;
+                 fm = getFragmentManager();
+                 FragmentTransaction ft = fm.beginTransaction();
+                 ft.replace(R.id.container, new EndFragment());
+                 ft.commit();
              }
          }
     }

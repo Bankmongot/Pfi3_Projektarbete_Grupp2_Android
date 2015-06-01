@@ -3,11 +3,19 @@ package se.mah.k3.klarappo;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.media.MediaScannerConnection;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.firebase.client.Firebase;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class MainActivity extends Activity {
@@ -17,6 +25,38 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContext(this);
+
+
+        try
+        {
+            // Creates a trace file in the primary external storage space of the
+            // current application.
+            // If the file does not exists, it is created.
+            File traceFile = new File(((Context)this).getExternalFilesDir(null), "TraceFile.txt");
+            if (!traceFile.exists())
+                traceFile.createNewFile();
+            // Adds a line to the trace file
+            BufferedWriter writer = new BufferedWriter(new FileWriter(traceFile, true /*append*/));
+            writer.write("This is a test trace file.");
+            writer.close();
+            // Refresh the data so it can seen when the device is plugged in a
+            // computer. You may have to unplug and replug the device to see the
+            // latest changes. This is not necessary if the user should not modify
+            // the files.
+            MediaScannerConnection.scanFile((Context) (this),
+                    new String[]{traceFile.toString()},
+                    null,
+                    null);
+
+        }
+        catch (IOException e)
+        {
+            Log.e("MainActivity", "Unable to write to the TraceFile.txt file");
+        }
+
+
+
+
 
         if (savedInstanceState == null) {
             FragmentManager fm;
