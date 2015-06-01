@@ -30,6 +30,7 @@ import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Handler;
 
@@ -39,6 +40,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
     int height;
     private Firebase myFirebaseRef;
     private ArrayList <Button> myButtonArray = new ArrayList<>();
+    private List<String> theAlternatives = new ArrayList<String>();
     private View publicView;
     private LinearLayout ll;
 
@@ -68,13 +70,13 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
     }
 
 
-    public Button createButton(int _id){
+    public Button createButton(int _id, String text){
         _id++;
         System.out.println("Inside to create button " + _id);
         Button b = new Button(getActivity());
         b.setId(_id);
         b.setOnClickListener(this);
-        b.setText("Alt: " + Integer.toString(_id));
+        b.setText(text);
         myButtonArray.add(b);
 
 
@@ -98,12 +100,33 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
                 for (int i = 0; i < Constants.numOfAlts; i++) {
                     counter++;
                     System.out.println("Button: " + i + " added.");
-                    ll.addView(createButton(i));
+                    String temps = theAlternatives.get(i).toString();
+                    ll.addView(createButton(i,temps));
                 }
             } else {
                 System.out.println("numOfAlts is null, gotta fix it. " + Constants.numOfAlts);
             }
         Log.d("MainFragment", "There is " + counter + " buttons");
+    }
+
+    public void getAlternatives(){
+        Firebase tempRef = new Firebase("https://popping-torch-1741.firebaseio.com/"+Constants.ID+"/Alternatives");
+
+        tempRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                Iterable<DataSnapshot> theChildren = snapshot.getChildren();
+
+                for (DataSnapshot dataSnapshot2 : theChildren) {
+                    theAlternatives.add(dataSnapshot2.getValue().toString());
+                    System.out.println("xxxsxsxxsxsxssx    "+dataSnapshot2.getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
     }
 
 
@@ -177,6 +200,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
             public void onCancelled(FirebaseError firebaseError) {
             }
         });
+
     }
 
 
@@ -210,10 +234,12 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         dialog.setIndeterminate(true);
         dialog.setCanceledOnTouchOutside(false);
 
+
         new CountDownTimer(3000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 dialog.show();
+                getAlternatives();
             }
 
             public void onFinish() {
