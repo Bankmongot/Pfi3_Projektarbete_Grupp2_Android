@@ -171,8 +171,9 @@
         android:background="@drawable/iconlogo"
         android:layout_alignParentRight="false"
         android:layout_alignParentBottom="false"
-        android:layout_marginTop="-10dp"
-        android:layout_alignParentLeft="true" />
+        android:layout_marginTop="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -54,7 +54,6 @@ public class LoginFragment extends Fragment implements ValueEventListener {
         theAlts = theAlts+2;
         Constants.numOfAlts = Long.valueOf(theAlts);
 
-
         answerRef.setValue(theAlts);
     }
 
@@ -135,23 +134,30 @@ public class LoginFragment extends Fragment implements ValueEventListener {
                 EditText screenNumber = (EditText) getActivity().findViewById(R.id.screenNumber);
 
 
+                EditText tQuestion = (EditText) getActivity().findViewById(R.id.question);
+                String temp = tQuestion.getText().toString();
 
-                //Are we on the right screen
                 if (screenNbrFromFirebase.equals(screenNumber.getText().toString())){
-                    Log.i("LoginFragment", "Logged in");
+                    if (("".equals(temp) || (" ".equals(temp))) || temp == null) {
+                        Log.d("AlternativeInput", "The EditText did not contain text");
+                        Toast.makeText(getActivity(),"Please fill all fields.",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Log.i("LoginFragment", "Logged in");
 
-                    genRandom();
-                    sendUsername();
-                    sendQuestion();
-                    sendTheme();
-                    numberOfAlternatives();
-                    sendActiveState();
+                        genRandom();
+                        sendQuestion();
+                        sendUsername();
+                        sendTheme();
+                        numberOfAlternatives();
+                        sendActiveState();
 
-                    FragmentManager fm;
-                    fm = getFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    ft.replace(R.id.container, new AlternativeInput());
-                    ft.commit();
+                        FragmentManager fm;
+                        fm = getFragmentManager();
+                        FragmentTransaction ft = fm.beginTransaction();
+                        ft.replace(R.id.container, new AlternativeInput());
+                        ft.commit();
+                    }
+
                 }   else {
                     Toast.makeText(getActivity(),"Not the correct Screen",Toast.LENGTH_LONG).show();
                 }

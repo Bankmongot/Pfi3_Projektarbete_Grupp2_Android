@@ -15,7 +15,11 @@
     <string name="aTitle">This is a question?</string>
 
     <string-array name="Themes">
-        <item>VerticalBoxes</item>
+        <item>Ice cubes</item>
+        <item>Stars</item>
+        <item>Ice cream</item>
+        <item>Bottles</item>
+        <item>Baloons</item>
     </string-array>
 
     <string-array name="numOfAlts">
