@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.media.MediaScannerConnection;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.firebase.client.Firebase;
 
@@ -20,11 +22,14 @@ import java.io.IOException;
 
 public class MainActivity extends Activity {
 
+    private MediaPlayer mp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContext(this);
+
 
 
         try
@@ -59,12 +64,19 @@ public class MainActivity extends Activity {
 
 
         if (savedInstanceState == null) {
+
             FragmentManager fm;
             fm = getFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.container, new SplashScreen());
             ft.commit();
         }
+    }
+
+    public void playSound(View v){
+        mp = MediaPlayer.create(this, R.raw.ohyeah);
+        mp.start();
+        System.out.println("Pressed view: " + v.getId());
     }
 
 

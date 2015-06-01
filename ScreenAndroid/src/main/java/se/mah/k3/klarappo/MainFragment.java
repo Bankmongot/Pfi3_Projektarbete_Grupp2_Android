@@ -6,8 +6,11 @@ import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -16,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -43,6 +47,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
     private List<String> theAlternatives = new ArrayList<String>();
     private View publicView;
     private LinearLayout ll;
+    private MediaPlayer ding;
 
 
 
@@ -61,7 +66,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         height = size.y;
         Log.d("MainFragment", "MainFragment view created");
 
-
         rootView.setOnTouchListener(this);
 
         getUsername();
@@ -76,12 +80,19 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         Button b = new Button(getActivity());
         b.setId(_id);
         b.setOnClickListener(this);
-        b.setText(_id+": "+text);
+        b.setText(_id + ": " + text);
         myButtonArray.add(b);
 
 
         return b;
     }
+
+    public void playDing(){
+        ding = MediaPlayer.create(getActivity(), R.raw.ding);
+        ding.setVolume(100, 100);
+        ding.start();
+    }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
@@ -91,6 +102,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         Log.d("MainFragment", "View created");
         delayFunction();
     }
+
+
 
     public void drawButtons(){
         int counter = 0;
@@ -262,7 +275,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
              if(v.getId()==b.getId()){
                  updateVote(b.getText().toString());
 
-
+                 playDing();
 
                  FragmentManager fm;
                  fm = getFragmentManager();
