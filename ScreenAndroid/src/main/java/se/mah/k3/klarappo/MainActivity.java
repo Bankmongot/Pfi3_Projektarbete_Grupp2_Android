@@ -77,9 +77,10 @@ public class MainActivity extends Activity {
     public void playSound(View v){
         mp = MediaPlayer.create(this, R.raw.ohyeah);
         x++;
-        if(x>4 && !mp.isPlaying()) {
+        if(x>4) {
             mp.start();
             System.out.println("Pressed view: " + v.getId());
+            x = 0;
         }
     }
 
