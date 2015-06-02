@@ -104,7 +104,7 @@ public class AlternativeInput extends Fragment implements ValueEventListener, Vi
                 Toast.makeText(getActivity(),"Please fill all fields.",Toast.LENGTH_SHORT).show();
             } else {
                 counter2 = counter2+1;
-                String x = et.getText().toString();
+                String x = et.getText().toString()+" ";
                 sendMyEditTexts(x);
                 System.out.println("The edittext " + x);
             }
