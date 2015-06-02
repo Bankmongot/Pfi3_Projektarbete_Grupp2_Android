@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
     int x = 0;
     public void playSound(View v){
         x++;
-        if(x>4) {
+        if(x>4 && !mp.isPlaying()) {
             mp = MediaPlayer.create(this, R.raw.ohyeah);
             mp.start();
             System.out.println("Pressed view: " + v.getId());
