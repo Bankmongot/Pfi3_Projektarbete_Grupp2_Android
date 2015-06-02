@@ -123,6 +123,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
     }
 
     public void getAlternatives(){
+        Log.d("MainFragment", "getAlternatives starting...");
         Firebase tempRef = new Firebase("https://popping-torch-1741.firebaseio.com/"+Constants.ID+"/Alternatives");
 
         tempRef.addValueEventListener(new ValueEventListener() {
