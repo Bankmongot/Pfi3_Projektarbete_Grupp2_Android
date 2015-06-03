@@ -62,7 +62,6 @@ public class AlternativeInput extends Fragment implements ValueEventListener, Vi
 
 
         for(int i = 0; i<Constants.numOfAlts; i++) {
-
             System.out.println(Constants.numOfAlts);
 
             EditText editText = new EditText(getActivity());
@@ -71,7 +70,16 @@ public class AlternativeInput extends Fragment implements ValueEventListener, Vi
 
             editText.setId(Integer.valueOf(1 + i));
             editText.setHint("Enter your alternative here...");
-            editText.setMaxLines(1);
+            editText.setSingleLine(true);
+            editText.setHorizontallyScrolling(false);
+            editText.setSelectAllOnFocus(true);
+
+            if(i+1 == Constants.numOfAlts){
+                editText.setImeOptions(0x00000006);
+            } else{
+                editText.setImeOptions(0x00000005);
+            }
+
             editText.setMaxWidth(50);
             ll.addView(tv);
             ll.addView(editText);
