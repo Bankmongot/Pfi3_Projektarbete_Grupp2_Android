@@ -4,6 +4,7 @@ package se.mah.k3.klarappo;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ import java.security.SecureRandom;
 public class LoginFragment extends Fragment implements ValueEventListener {
 
     private Firebase myFirebaseRef;
+    private MediaPlayer mp;
 
 
 
@@ -116,6 +118,12 @@ public class LoginFragment extends Fragment implements ValueEventListener {
         Log.d("LoginFragment", "Activity Created");
     }
 
+    public void errorSound(){
+        mp = MediaPlayer.create(getActivity(), R.raw.error);
+        mp.setVolume(100, 100);
+        mp.start();
+    }
+
 
     public void logMeIn(){
         Log.d("LoginFragment", "LogMeIn init");
@@ -139,6 +147,7 @@ public class LoginFragment extends Fragment implements ValueEventListener {
 
                 if (screenNbrFromFirebase.equals(screenNumber.getText().toString())){
                     if (("".equals(temp) || (" ".equals(temp))) || temp == null) {
+                        errorSound();
                         Log.d("AlternativeInput", "The EditText did not contain text");
                         Toast.makeText(getActivity(),"Please fill all fields.",Toast.LENGTH_SHORT).show();
                     } else {
@@ -160,6 +169,7 @@ public class LoginFragment extends Fragment implements ValueEventListener {
 
                 }   else {
                     Toast.makeText(getActivity(),"Not the correct Screen",Toast.LENGTH_LONG).show();
+                    errorSound();
                 }
             }
 

@@ -4,6 +4,7 @@ package se.mah.k3.klarappo;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -35,6 +36,7 @@ public class AlternativeInput extends Fragment implements ValueEventListener, Vi
     private Button b;
     private ArrayList <EditText> myEditTexts = new ArrayList<>();
     private int x = 0;
+    private MediaPlayer mp;
 
 
     public AlternativeInput() {
@@ -65,7 +67,7 @@ public class AlternativeInput extends Fragment implements ValueEventListener, Vi
 
             EditText editText = new EditText(getActivity());
             TextView tv = new TextView(getActivity());
-            tv.setText("Alternative: " + (1+i));
+            tv.setText("Alternative: " + (1 + i));
 
             editText.setId(Integer.valueOf(1 + i));
             editText.setHint("Enter your alternative here...");
@@ -87,6 +89,7 @@ public class AlternativeInput extends Fragment implements ValueEventListener, Vi
             String temp = et.getText().toString();
             System.out.println(temp);
             if (("".equals(temp) || (" ".equals(temp))) || temp == null) {
+                errorSound();
                 Log.d("AlternativeInput", "The EditText did not contain text");
                 Toast.makeText(getActivity(),"Please fill all fields.",Toast.LENGTH_SHORT).show();
             } else {
@@ -103,6 +106,12 @@ public class AlternativeInput extends Fragment implements ValueEventListener, Vi
             counter = 0;
             counter2 = 0;
         }
+    }
+
+    public void errorSound(){
+        mp = MediaPlayer.create(getActivity(), R.raw.error);
+        mp.setVolume(100, 100);
+        mp.start();
     }
 
     public void sendMyEditTexts(final String theText){
