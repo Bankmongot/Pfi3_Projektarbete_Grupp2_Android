@@ -1,6 +1,8 @@
 package se.mah.k3.klarappo;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.graphics.Point;
 import android.media.MediaPlayer;
@@ -264,14 +266,14 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
 
                  playDing();
 
-                 /*
+
                  FragmentManager fm;
                  fm = getFragmentManager();
                  FragmentTransaction ft = fm.beginTransaction();
                  ft.setCustomAnimations(R.anim.fadein, R.anim.fadeout);
                  ft.replace(R.id.container, new EndFragment());
                  ft.commit();
-                 */
+
              }
          }
     }
